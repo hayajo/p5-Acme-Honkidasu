@@ -6,7 +6,7 @@ our $VERSION = '0.01';
 
 use Time::Piece ();
 
-use constant LIST_HONKIDASU => [qw/
+our $list_honkidasu = [qw/
 初っ端から飛ばすと後でばてる。来月から本気を出す。
 まだまだ寒い。これではやる気が出ない。来月から本気出す。
 年度の終わりでタイミングが悪い。来月から本気を出す。
@@ -31,7 +31,7 @@ sub import {
         my ($time, $format) = @_;
         $format =~ s/%%/%%%/g if ($format);;
         my $str = $orig_time_piece_strftime->($time, $format);
-        $str =~ s/(?<!%)%!/LIST_HONKIDASU()->[$time->_mon]/ge;
+        $str =~ s/(?<!%)%!/honkidasu($time)/ge;
         $str =~ s/%%/%/g;
         return $str;
     };
@@ -39,7 +39,9 @@ sub import {
 
 sub honkidasu {
     my $time = shift;
-    return LIST_HONKIDASU->[ $time->_mon ];
+    my $idx  = ( $time->mon % scalar(@$list_honkidasu) ) - 1;
+    chomp( my $msg = $list_honkidasu->[$idx] );
+    return $msg;
 }
 
 1;
