@@ -70,18 +70,18 @@ Acme::Honkidasu is 来月から本気を出す。
 
 =head2 honkidasu
 
-    say localtime->honkidasu;
+  say localtime->honkidasu;
 
-    # or
+  # or
 
-    my $now = localtime;
-    say Acme::Honkidasu::honkidasu($now);
+  my $now = localtime;
+  say Acme::Honkidasu::honkidasu($now);
 
 来月から本気だす。
 
 =head1 EXTEND strftime
 
-    say localtime->strftime('%F %!');
+  say localtime->strftime('%F %!');
 
 add conversion specifier character '%!' to 来月から本気を出す。
 
