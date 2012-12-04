@@ -23,6 +23,8 @@ Acme::Honkidasu is 来月から本気を出す。
 
 =head2 honkidasu
 
+  use Time::Piece;
+
   say localtime->honkidasu;
 
   # or
