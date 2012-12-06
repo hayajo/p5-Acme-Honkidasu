@@ -4,20 +4,23 @@ use warnings;
 use utf8;
 binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_output/;
 
-use Test::More tests => 60;
+use Test::More tests => 72;
 
-use Time::Piece;
 use Acme::Honkidasu;
 
-my @honkidasu = <DATA>;
+# my @honkidasu = <DATA>;
 for my $i (1..12) {
     my $t = Time::Piece->strptime(sprintf('%02d', $i), '%m');
-    chomp( my $honki = $honkidasu[ $i - 1 ] );
+    # chomp( my $honki = $honkidasu[ $i - 1 ] );
+    chomp( my $honki = $Acme::Honkidasu::list_honkidasu->[ $i - 1 ] );
     cmp_ok $t->honkidasu, 'eq', $honki;
     cmp_ok $t->strftime('%!'), 'eq', $honki;
     cmp_ok $t->strftime('%%!%%%'), 'eq', '%!%%';
     cmp_ok $t->strftime('%%%!%%%'), 'eq', "%$honki%%";
     cmp_ok $t->strftime('%%%!%%%%%!%%%'), 'eq', "%$honki%%$honki%%";
+
+    chomp( my $honki_positive = $Acme::Honkidasu::list_honkidasu_positive->[ $i - 1 ] );
+    cmp_ok $t->honkidasu(1), 'eq', $honki_positive;
 }
 
 my $now = localtime;

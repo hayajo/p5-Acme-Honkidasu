@@ -7,7 +7,6 @@ binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_outpu
 use Test::More tests => 36;
 use Test::More;
 
-use Time::Piece;
 use Acme::Honkidasu;
 
 my @list = <DATA>;

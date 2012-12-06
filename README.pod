@@ -7,38 +7,35 @@ Acme::Honkidasu - 本気出すコピペ
 =head1 SYNOPSIS
 
   use 5.010;
-  use Time::Piece;
-  use Acme::Honkidasu;
   binmode STDOUT, 'utf8';
-
-  my $now = localtime;
-  say $now->honkidasu;
-  say $now->strftime('%F %!');
+  use Acme::Honkidasu;
+  my $time = localtime;
+  say $time->honkidasu;
+  say $time->strftime('%F %!');
 
 =head1 DESCRIPTION
 
-Acme::Honkidasu is 来月から本気を出す。
+Acme::Honkidasu is 本気出す。
 
 =head1 METHOD
 
 =head2 honkidasu
 
-  use Time::Piece;
+  use Acme::Honkidasu;
+  my $time = localtime;
+  say $time->honkidasu;
+  # say $time->honkidasu(1);
 
-  say localtime->honkidasu;
-
-  # or
-
-  my $now = localtime;
-  say Acme::Honkidasu::honkidasu($now);
-
-来月から本気だす。
+本気出す。
 
 =head1 EXTEND strftime
 
-  say localtime->strftime('%F %!');
+  use Acme::Honkidasu;
+  my $time = localtime;
+  say $time->strftime('%F %!');
+  # say $time->strftime('%F %+!');
 
-add conversion specifier character '%!' to 来月から本気を出す。
+add conversion specifier character '%!' to 本気出す。
 
 =head1 AUTHOR
 
