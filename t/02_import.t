@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_output/;
 
-use Test::More tests => 24;
+use Test::More tests => 60;
 
 use Time::Piece;
 use Acme::Honkidasu;
@@ -15,6 +15,9 @@ for my $i (1..12) {
     chomp( my $honki = $honkidasu[ $i - 1 ] );
     cmp_ok $t->honkidasu, 'eq', $honki;
     cmp_ok $t->strftime('%!'), 'eq', $honki;
+    cmp_ok $t->strftime('%%!%%%'), 'eq', '%!%%';
+    cmp_ok $t->strftime('%%%!%%%'), 'eq', "%$honki%%";
+    cmp_ok $t->strftime('%%%!%%%%%!%%%'), 'eq', "%$honki%%$honki%%";
 }
 
 my $now = localtime;

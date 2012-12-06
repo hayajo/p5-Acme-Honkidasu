@@ -29,9 +29,9 @@ sub import {
     *{"Time::Piece::honkidasu"} = \&honkidasu;
     *Time::Piece::strftime = sub {
         my ($time, $format) = @_;
-        $format =~ s/%%/%%%/g if ($format);;
+        $format =~ s/%%/%%%%/g if ($format);;
         my $str = $orig_time_piece_strftime->($time, $format);
-        $str =~ s/(?<!%)%!/honkidasu($time)/ge;
+        $str =~ s/((%*)%!)/(length($2) % 2) ? $1 : $2 . honkidasu($time)/ge;
         $str =~ s/%%/%/g;
         return $str;
     };
@@ -39,7 +39,8 @@ sub import {
 
 sub honkidasu {
     my $time = shift;
-    my $idx  = ( $time->mon % scalar(@$list_honkidasu) ) - 1;
+    return '' unless (@$list_honkidasu);
+    my $idx = ( $time->mon % scalar(@$list_honkidasu) ) - 1;
     chomp( my $msg = $list_honkidasu->[$idx] );
     return $msg;
 }
