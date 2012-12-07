@@ -10,7 +10,7 @@ use Test::More;
 use Acme::Honkidasu;
 
 my @list = <DATA>;
-$Acme::Honkidasu::list_honkidasu = \@list;
+$Acme::Honkidasu::LIST_HONKIDASU = \@list;
 for my $i (1..12) {
     my $t = Time::Piece->strptime(sprintf('%02d', $i), '%m');
     chomp( my $msg = $list[ ( $i % scalar(@list) ) - 1 ] );
@@ -18,7 +18,7 @@ for my $i (1..12) {
     cmp_ok $t->strftime('%!'), 'eq', $msg;
 }
 
-$Acme::Honkidasu::list_honkidasu = [];
+$Acme::Honkidasu::LIST_HONKIDASU = [];
 for my $i (1..12) {
     my $t = Time::Piece->strptime(sprintf('%02d', $i), '%m');
     chomp( my $msg = $list[ ( $i % scalar(@list) ) - 1 ] );

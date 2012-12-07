@@ -12,14 +12,14 @@ use Acme::Honkidasu;
 for my $i (1..12) {
     my $t = Time::Piece->strptime(sprintf('%02d', $i), '%m');
     # chomp( my $honki = $honkidasu[ $i - 1 ] );
-    chomp( my $honki = $Acme::Honkidasu::list_honkidasu->[ $i - 1 ] );
+    chomp( my $honki = $Acme::Honkidasu::LIST_HONKIDASU->[ $i - 1 ] );
     cmp_ok $t->honkidasu, 'eq', $honki;
     cmp_ok $t->strftime('%!'), 'eq', $honki;
     cmp_ok $t->strftime('%%!%%%'), 'eq', '%!%%';
     cmp_ok $t->strftime('%%%!%%%'), 'eq', "%$honki%%";
     cmp_ok $t->strftime('%%%!%%%%%!%%%'), 'eq', "%$honki%%$honki%%";
 
-    chomp( my $honki_positive = $Acme::Honkidasu::list_honkidasu_positive->[ $i - 1 ] );
+    chomp( my $honki_positive = $Acme::Honkidasu::LIST_HONKIDASU_POSITIVE->[ $i - 1 ] );
     cmp_ok $t->honkidasu(1), 'eq', $honki_positive;
 }
 
