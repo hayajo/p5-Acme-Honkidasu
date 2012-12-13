@@ -45,11 +45,16 @@ add conversion specifier character '%!' to 本気出す。
   use strict;
   use warnings;
   use 5.010;
+  use utf8;
+  binmode STDOUT, ":utf8";
+
   use Acme::Honkidasu;
   $Acme::Honkidasu::DETERMINE = sub {
       my $time = shift;
       my $list = shift;
-      ( $time->hour % scalar(@$list) ) - 1;
+      my $idx = $time->hour % scalar(@$list);
+      chomp( my $msg = $list->[$idx] );
+      return $msg;
   };
   $Acme::Honkidasu::LIST_HONKIDASU = [<DATA>];
   say localtime->honkidasu;

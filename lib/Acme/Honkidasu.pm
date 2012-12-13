@@ -50,6 +50,7 @@ use warnings;
 
 {
     package Time::Piece;
+    use POSIX::strftime::GNU;
 
     BEGIN {
         no strict 'refs';
@@ -58,7 +59,7 @@ use warnings;
         *{'Time::Piece::strftime'} = sub {
             my ($self, $format) = @_;
             $format =~ s/%%/%%%%/g if ($format);;
-            my $str = $orig_time_piece_strftime->($self, $format);
+            my $str = POSIX::strftime( $format, CORE::localtime $self->epoch );
             $str =~ s/((%*)%(\+)?!)/(length($2) % 2) ? $1 : $2 . $self->honkidasu($3)/ge;
             $str =~ s/%%/%/g;
             return $str;

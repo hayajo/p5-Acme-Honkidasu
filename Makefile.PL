@@ -6,6 +6,7 @@ all_from 'lib/Acme/Honkidasu.pm';
 readme_pod_from 'lib/Acme/Honkidasu.pm';
 
 requires 'Time::Piece' => '1.20';
+requires 'POSIX::strftime::GNU';
 
 tests 't/*.t';
 author_tests 'xt';
