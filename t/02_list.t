@@ -15,7 +15,7 @@ for my $i (1..12) {
     my $t = Time::Piece->strptime(sprintf('%02d', $i), '%m');
     chomp( my $msg = $list[ ( $i % scalar(@list) ) - 1 ] );
     cmp_ok $t->honkidasu, 'eq', $msg;
-    cmp_ok $t->strftime('%:('), 'eq', $msg;
+    cmp_ok $t->strftime('%('), 'eq', $msg;
 }
 
 $Acme::Honkidasu::LIST_HONKIDASU = [];

@@ -60,7 +60,7 @@ use warnings;
             my ($self, $format) = @_;
             $format =~ s/%%/%%%%/g if ($format);;
             my $str = POSIX::strftime( $format, CORE::localtime $self->epoch );
-            $str =~ s/((%*)%:(\(|\)))/(length($2) % 2) ? $1 : $2 . $self->honkidasu( ($3 eq ')') ? 1 : 0 )/ge;
+            $str =~ s/((%*)%(\(|\)))/(length($2) % 2) ? $1 : $2 . $self->honkidasu( ($3 eq ')') ? 1 : 0 )/ge;
             $str =~ s/%%/%/g;
             return $str;
         };
@@ -93,7 +93,7 @@ Acme::Honkidasu - 本気出すコピペ
   use Acme::Honkidasu;
   my $time = localtime;
   say $time->honkidasu;
-  say $time->strftime('%F %:(');
+  say $time->strftime('%F %(');
 
 =head1 DESCRIPTION
 
@@ -114,10 +114,10 @@ Acme::Honkidasu is 本気出す。
 
   use Acme::Honkidasu;
   my $time = localtime;
-  say $time->strftime('%F %:(');
-  say $time->strftime('%F %:)'); # positive
+  say $time->strftime('%F %(');
+  say $time->strftime('%F %)'); # positive
 
-add conversion specifier character '%:(' to 本気出す。
+add conversion specifier character '%(' to 本気出す。
 
 =head1 EXAMPLES
 
@@ -140,7 +140,7 @@ add conversion specifier character '%:(' to 本気出す。
   };
   $Acme::Honkidasu::LIST_HONKIDASU = [<DATA>];
   say localtime->honkidasu;
-  say localtime->strftime('%:(');
+  say localtime->strftime('%(');
 
   __DATA__
   新しい１日。さあはじまる。今日から本気出す。
