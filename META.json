@@ -43,7 +43,7 @@
       "runtime" : {
          "requires" : {
             "POSIX::strftime::GNU" : "0",
-            "Time::Piece" : "1.31",
+            "Time::Piece" : "1.20",
             "perl" : "5.010"
          }
       },
@@ -65,7 +65,7 @@
          "web" : "https://github.com/hayajo/p5-Acme-Honkidasu"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_authority" : "cpan:HAYAJO",
    "x_contributors" : [
       "hayajo <hayato.imai@gmail.com>",

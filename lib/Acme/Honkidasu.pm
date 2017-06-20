@@ -4,7 +4,7 @@ use warnings;
 {
     package Acme::Honkidasu;
     use utf8;
-    our $VERSION = '0.03';
+    our $VERSION = '0.04';
 
     use Time::Piece ();
 
@@ -53,7 +53,8 @@ use warnings;
 }
 
 {
-    package Time::Piece;
+    package # hide from PAUSE
+        Time::Piece;
     use POSIX::strftime::GNU;
 
     BEGIN {
