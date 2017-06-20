@@ -1,4 +1,9 @@
-Revision history for Perl extension Acme::Honkidasu
+Revision history for Perl extension Acme-Honkidasu
+
+{{$NEXT}}
+
+0.02 2017-06-20T05:07:12Z
+        - minillaize
 
 0.01
         - original version
